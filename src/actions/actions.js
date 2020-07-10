@@ -4,6 +4,7 @@ import {
   CONTACT_SELECT,
   CONTACT_UPDATE_CANCEL,
   CONTACT_UPDATE_SAVE,
+  LOADING_UPDATE,
 } from '../constants/actionTypes';
 
 export const apiError = (err) => ({
@@ -29,4 +30,9 @@ export const contactUpdateCancel = () => ({
 export const contactUpdateSave = (formFields) => ({
   type: CONTACT_UPDATE_SAVE,
   payload: formFields,
+});
+
+export const loadingUpdate = (isLoading) => ({
+  type: LOADING_UPDATE,
+  payload: isLoading,
 });
