@@ -76,11 +76,21 @@ const ContactDetails = () => {
   };
 
   const onFormCancel = () => {
-    // dispatch form cancel event
+    dispatch(contactUpdateCancel());
   };
 
   const onFormSave = () => {
-    dispatch(contactUpdateSave(formFields));
+    const updatedContact = {
+      firstName: formFirstName,
+      lastName: formLastName,
+      address: formAddress,
+      city: formCity,
+      country: formCountry,
+      phone: formPhone,
+      email: formEmail,
+    };
+    console.log('formFields at dispatched ->', updatedContact);
+    dispatch(contactUpdateSave(updatedContact));
   };
 
   return (
