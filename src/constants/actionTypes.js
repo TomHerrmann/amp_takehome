@@ -1,1 +1,3 @@
-// export const SOME_ACTION = 'SOME_ACTION'
+export const API_ERROR = 'API_ERROR';
+export const CONTACTS_POPULATE = 'CONTACT_POPULATE';
+export const CONTACT_SELECT = 'CONTACT_SELECT';
