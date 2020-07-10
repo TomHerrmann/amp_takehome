@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useState } from 'react';
 import { format } from 'path';
 
 const ContactDetails = ({ contact }) => {
@@ -31,12 +31,56 @@ const ContactDetails = ({ contact }) => {
     formEmail,
   ];
 
+  const onFormChange = (event) => {
+    const str = event.target.value;
+    const field = event.target.name;
+
+    switch (field) {
+      case 'First Name':
+        setFormFirstName(str);
+        return;
+      case 'Last Name':
+        setFormLastName(str);
+        return;
+      case 'Address':
+        setFormAddress(str);
+        return;
+      case 'City':
+        setFormCity(str);
+        return;
+      case 'Country':
+        setFormCountry(str);
+        return;
+      case 'Phone':
+        setFormPhone(str);
+        return;
+      case 'Email':
+        setFormEmail(str);
+        return;
+      default:
+        return;
+    }
+  };
+
+  const onFormSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+
+      // dispatch to save contact info
+      // pass in formState array
+    },
+    [...formState]
+  );
+
   return (
     <section className="contact-details">
       <form>
         {formFields.map((field, index) => {
           <label key={`${index}${field}`}>
             <input
+              onChange={(event) => {
+                onFormChange(event);
+              }}
               placeholder={`${field}`}
               required
               type="text"
@@ -46,6 +90,8 @@ const ContactDetails = ({ contact }) => {
           </label>;
         })}
       </form>
+      <button className="cancel-button">Cancel</button>
+      <button className="save-button">Save</button>
     </section>
   );
 };
