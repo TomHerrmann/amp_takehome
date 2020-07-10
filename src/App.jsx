@@ -7,13 +7,14 @@ import ContactButton from './components/ContactButton.jsx';
 import ContactDetails from './components/ContactDetails.jsx';
 
 import { contactAPI, contactAPIKey } from './utils/enums';
+import { defaultFieldResolver } from 'graphql';
 
 const App = ({
   apiError,
   contacts,
   contactsPopulate,
   currentContact,
-  view,
+  detailsView,
 }) => {
   useEffect(() => {
     const fetchAllContacts = async () => {
@@ -36,21 +37,33 @@ const App = ({
     }
   }, []);
 
-  console.log('state view: ', view, ' state currentcontact: ', currentContact);
+  console.log(
+    'state view: ',
+    detailsView,
+    ' state currentcontact: ',
+    currentContact
+  );
 
   return (
     <main className="app">
       <header className="title-container">
         <h1>Contacts</h1>
+        {detailsView ? (
+          <h2>{`${currentContact.firstName} ${currentContact.lastName}`}</h2>
+        ) : null}
       </header>
-      <section className="contacts-list">
-        {contacts.map((contact, index) => (
-          <ContactButton
-            contact={contact}
-            index={index}
-            key={`contact${index}`}
-          />
-        ))}
+      <section className="contact-info">
+        {detailsView ? (
+          <ContactDetails />
+        ) : (
+          contacts.map((contact, index) => (
+            <ContactButton
+              contact={contact}
+              index={index}
+              key={`contact${index}`}
+            />
+          ))
+        )}
       </section>
     </main>
   );

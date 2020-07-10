@@ -1,8 +1,20 @@
-import React, { useCallback, useState } from 'react';
-import { format } from 'path';
+import React, { useState } from 'react';
+import { useDispatch, useStore } from 'react-redux';
+import { contactUpdateCancel, contactUpdateSave } from '../actions/actions';
 
-const ContactDetails = ({ contact }) => {
-  const { firstName, lastName, address, city, country, phone, email } = contact;
+const ContactDetails = () => {
+  const dispatch = useDispatch();
+  const store = useStore();
+  const { contactIndex, currentContact } = store.getState();
+  const {
+    firstName,
+    lastName,
+    address,
+    city,
+    country,
+    phone,
+    email,
+  } = currentContact;
 
   const [formFirstName, setFormFirstName] = useState(firstName);
   const [formLastName, setFormLastName] = useState(lastName);
@@ -21,6 +33,7 @@ const ContactDetails = ({ contact }) => {
     'Phone',
     'Email',
   ];
+
   const formState = [
     formFirstName,
     formLastName,
@@ -62,36 +75,41 @@ const ContactDetails = ({ contact }) => {
     }
   };
 
-  const onFormSubmit = useCallback(
-    (event) => {
-      event.preventDefault();
+  const onFormCancel = () => {
+    // dispatch form cancel event
+  };
 
-      // dispatch to save contact info
-      // pass in formState array
-    },
-    [...formState]
-  );
+  const onFormSave = () => {
+    dispatch(contactUpdateSave(formFields));
+  };
 
   return (
     <section className="contact-details">
       <form>
         {formFields.map((field, index) => {
-          <label key={`${index}${field}`}>
-            <input
-              onChange={(event) => {
-                onFormChange(event);
-              }}
-              placeholder={`${field}`}
-              required
-              type="text"
-              value={formState[index]}
-            />
-            ;
-          </label>;
+          return (
+            <label key={`${index}${field}`}>
+              <input
+                name={field}
+                onChange={(event) => {
+                  onFormChange(event);
+                }}
+                placeholder={formState[index]}
+                required
+                type="text"
+                value={formState[index]}
+              />
+              ;
+            </label>
+          );
         })}
       </form>
-      <button className="cancel-button">Cancel</button>
-      <button className="save-button">Save</button>
+      <button className="cancel-button" onClick={onFormCancel}>
+        Cancel
+      </button>
+      <button className="save-button" onClick={onFormSave}>
+        Save
+      </button>
     </section>
   );
 };

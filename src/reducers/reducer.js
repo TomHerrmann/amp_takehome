@@ -2,13 +2,16 @@ import {
   API_ERROR,
   CONTACTS_POPULATE,
   CONTACT_SELECT,
+  CONTACT_UPDATE_CANCEL,
+  CONTACT_UPDATE_SAVE,
 } from '../constants/actionTypes';
 
 const initialState = {
   contacts: [],
+  contactIndex: null,
   currentContact: null,
+  detailsView: false,
   errorStatus: null,
-  view: 'contactList',
 };
 
 const reducer = (state = initialState, action) => {
@@ -30,14 +33,37 @@ const reducer = (state = initialState, action) => {
       };
     }
     case CONTACT_SELECT: {
-      const currentContact = action.payload;
+      const { currentContact, contactIndex } = action.payload;
 
       return {
         ...state,
+        contactIndex,
         currentContact,
-        view: 'contactDetails',
+        detailsView: true,
       };
     }
+    case CONTACT_UPDATE_CANCEL: {
+      return {
+        ...state,
+        contactIndex: null,
+        currentContact: null,
+        detailsView: false,
+      };
+    }
+    case CONTACT_UPDATE_SAVE: {
+      const updatedContact = action.payload;
+      const contacts = state.contacts.slice();
+      contacts[state.contactIndex] = updatedContact;
+
+      return {
+        ...state,
+        contactIndex: null,
+        currentContact: null,
+        contacts,
+        detailsView: false,
+      };
+    }
+
     default:
       return state;
   }

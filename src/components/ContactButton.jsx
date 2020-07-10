@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { contactSelect } from '../actions/actions';
 
@@ -9,7 +9,7 @@ const ContactButton = ({ contact, index }) => {
     <button
       className="contact-button"
       onClick={() => {
-        dispatch(contactSelect(contact));
+        dispatch(contactSelect(contact, index));
       }}
     >
       {contact.firstName}
