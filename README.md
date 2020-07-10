@@ -1,3 +1,3 @@
-# Project Template
+# adMarketplace Take-Home
 
 ###### Author: Tom Herrmann
