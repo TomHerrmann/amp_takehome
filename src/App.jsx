@@ -5,6 +5,7 @@ import * as actions from './actions/actions';
 
 import ContactButton from './components/ContactButton.jsx';
 import ContactDetails from './components/ContactDetails.jsx';
+import LoadingSpinner from './components/LoadingSpinner.jsx';
 
 import { contactAPI, contactAPIKey } from './utils/enums';
 import { defaultFieldResolver } from 'graphql';
@@ -12,37 +13,47 @@ import { defaultFieldResolver } from 'graphql';
 const App = ({
   apiError,
   contacts,
-  contactsPopulate,
   currentContact,
   detailsView,
+  isLoading,
+  loadingUpdate,
 }) => {
-  useEffect(() => {
-    const fetchAllContacts = async () => {
-      const contactsPromise = await fetch(contactAPI, {
-        'x-api-key': contactAPIKey,
+  const fetchAllContacts = async () => {
+    const contactsPromise = await fetch(contactAPI, {
+      'x-api-key': contactAPIKey,
+    });
+
+    if (contactsPromise.status === 200) {
+      const contacts = await contactsPromise.json();
+      const sortedContacts = contacts.sort((a, b) => {
+        if (a.lastName > b.lastName) {
+          return 1;
+        }
+        if (a.lastName < b.lastName) {
+          return -1;
+        }
+        return 0;
       });
 
-      if (contactsPromise.status === 200) {
-        const contacts = await contactsPromise.json();
+      window.localStorage.setItem('contacts', JSON.stringify(sortedContacts));
+      setTimeout(() => {
+        console.log('loadingUpdate');
+        loadingUpdate(false);
+      }, 250);
+    } else {
+      apiError(contactsPromise.status);
+    }
+  };
 
-        contactsPopulate(contacts);
-      } else {
-        apiError(contactsPromise.status);
-      }
-    };
+  useEffect(() => {
+    // if (!contacts) {
     try {
       fetchAllContacts();
     } catch (err) {
       console.log(`Fetch failed with ${err}`);
     }
+    // }
   }, []);
-
-  console.log(
-    'state view: ',
-    detailsView,
-    ' state currentcontact: ',
-    currentContact
-  );
 
   return (
     <main className="app">
@@ -52,8 +63,10 @@ const App = ({
           <h2>{`${currentContact.firstName} ${currentContact.lastName}`}</h2>
         ) : null}
       </header>
-      <section className="contact-info">
-        {detailsView ? (
+      {/* <section className="contact-info">
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : detailsView ? (
           <ContactDetails />
         ) : (
           contacts.map((contact, index) => (
@@ -64,7 +77,7 @@ const App = ({
             />
           ))
         )}
-      </section>
+      </section> */}
     </main>
   );
 };

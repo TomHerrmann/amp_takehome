@@ -4,14 +4,16 @@ import {
   CONTACT_SELECT,
   CONTACT_UPDATE_CANCEL,
   CONTACT_UPDATE_SAVE,
+  LOADING_UPDATE,
 } from '../constants/actionTypes';
 
 const initialState = {
-  contacts: [],
+  contacts: window.localStorage.getItem('contacts'),
   contactIndex: null,
   currentContact: null,
   detailsView: false,
   errorStatus: null,
+  isLoading: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,9 +29,11 @@ const reducer = (state = initialState, action) => {
     case CONTACTS_POPULATE: {
       const contacts = action.payload;
 
+      window.localStorage.setItem('contacts', contacts);
       return {
         ...state,
         contacts,
+        isLoading: false,
       };
     }
     case CONTACT_SELECT: {
@@ -55,6 +59,7 @@ const reducer = (state = initialState, action) => {
       const contacts = state.contacts.slice();
       contacts[state.contactIndex] = updatedContact;
 
+      window.localStorage.setItem('contacts', contacts);
       return {
         ...state,
         contactIndex: null,
@@ -63,7 +68,14 @@ const reducer = (state = initialState, action) => {
         detailsView: false,
       };
     }
+    case LOADING_UPDATE: {
+      const isLoading = action.payload;
 
+      return {
+        ...state,
+        isLoading,
+      };
+    }
     default:
       return state;
   }
