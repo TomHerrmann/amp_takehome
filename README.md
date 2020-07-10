@@ -1,1 +1,3 @@
-# amp_takehome
+# Project Template
+
+###### Author: Tom Herrmann
