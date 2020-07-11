@@ -43,6 +43,40 @@ const App = ({
     }
   };
 
+  const renderHeader = () => {
+    return detailsView ? (
+      <>
+        <section className="header-title">
+          <button onClick={contactUpdateCancel}>{'< Back'}</button>
+          <h1>Contacts</h1>
+        </section>
+        <section className="header-name">
+          <h2>{`${currentContact.firstName} ${currentContact.lastName}`}</h2>
+        </section>
+      </>
+    ) : (
+      <section className="header-title">
+        <h1>Contacts</h1>
+      </section>
+    );
+  };
+
+  const renderContactInfo = () => {
+    return isLoading ? (
+      <LoadingSpinner />
+    ) : detailsView ? (
+      <ContactDetails />
+    ) : (
+      contacts.map((contact, index) => (
+        <ContactButton
+          contact={contact}
+          index={index}
+          key={`contact${index}`}
+        />
+      ))
+    );
+  };
+
   useEffect(() => {
     if (!contacts) {
       try {
@@ -63,30 +97,8 @@ const App = ({
 
   return (
     <main className="app">
-      <header className="title-container">
-        <h1>Contacts</h1>
-        {detailsView ? (
-          <>
-            <h2>{`${currentContact.firstName} ${currentContact.lastName}`}</h2>
-            <button onClick={contactUpdateCancel}>{'< Back'}</button>
-          </>
-        ) : null}
-      </header>
-      <section className="contact-info">
-        {isLoading ? (
-          <LoadingSpinner />
-        ) : detailsView ? (
-          <ContactDetails />
-        ) : (
-          contacts.map((contact, index) => (
-            <ContactButton
-              contact={contact}
-              index={index}
-              key={`contact${index}`}
-            />
-          ))
-        )}
-      </section>
+      <header className="title-container">{renderHeader()}</header>
+      <section className="contact-info">{renderContactInfo()}</section>
     </main>
   );
 };
