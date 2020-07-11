@@ -8,12 +8,12 @@ import ContactDetails from './components/ContactDetails.jsx';
 import LoadingSpinner from './components/LoadingSpinner.jsx';
 
 import { contactAPI, contactAPIKey } from './utils/enums';
-import { defaultFieldResolver } from 'graphql';
 
 const App = ({
   apiError,
   contacts,
   contactsPopulate,
+  contactUpdateCancel,
   currentContact,
   detailsView,
   isLoading,
@@ -66,7 +66,10 @@ const App = ({
       <header className="title-container">
         <h1>Contacts</h1>
         {detailsView ? (
-          <h2>{`${currentContact.firstName} ${currentContact.lastName}`}</h2>
+          <>
+            <h2>{`${currentContact.firstName} ${currentContact.lastName}`}</h2>
+            <button onClick={contactUpdateCancel}>{'< Back'}</button>
+          </>
         ) : null}
       </header>
       <section className="contact-info">
