@@ -26,7 +26,10 @@ const reducer = (state = initialState, action) => {
       };
     }
     case CONTACTS_POPULATE: {
-      const contacts = JSON.parse(action.payload);
+      const contacts =
+        typeof action.payload === 'string'
+          ? JSON.parse(action.payload)
+          : action.payload;
 
       return {
         ...state,
@@ -57,7 +60,6 @@ const reducer = (state = initialState, action) => {
       const contacts = state.contacts.slice();
       contacts[state.contactIndex] = updatedContact;
 
-      window.localStorage.setItem('contacts', contacts);
       return {
         ...state,
         contactIndex: null,

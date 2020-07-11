@@ -35,9 +35,8 @@ const App = ({
         return 0;
       });
 
-      window.localStorage.setItem('contacts', JSON.stringify(sortedContacts));
       setTimeout(() => {
-        contactsPopulate(window.localStorage.getItem('contacts'));
+        contactsPopulate(sortedContacts);
       }, 250);
     } else {
       apiError(contactsPromise.status);
@@ -57,6 +56,10 @@ const App = ({
       }, 250);
     }
   }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   return (
     <main className="app">
