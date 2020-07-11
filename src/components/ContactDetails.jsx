@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useStore } from 'react-redux';
 import { contactUpdateCancel, contactUpdateSave } from '../actions/actions';
 
@@ -16,13 +16,23 @@ const ContactDetails = () => {
     email,
   } = currentContact;
 
-  const [formFirstName, setFormFirstName] = useState(firstName);
-  const [formLastName, setFormLastName] = useState(lastName);
-  const [formAddress, setFormAddress] = useState(address);
-  const [formCity, setFormCity] = useState(city);
-  const [formCountry, setFormCountry] = useState(country);
-  const [formPhone, setFormPhone] = useState(phone);
-  const [formEmail, setFormEmail] = useState(email);
+  const [formFirstName, setFormFirstName] = useState('');
+  const [formLastName, setFormLastName] = useState('');
+  const [formAddress, setFormAddress] = useState('');
+  const [formCity, setFormCity] = useState('');
+  const [formCountry, setFormCountry] = useState('');
+  const [formPhone, setFormPhone] = useState('');
+  const [formEmail, setFormEmail] = useState('');
+
+  useEffect(() => {
+    setFormFirstName(firstName);
+    setFormLastName(lastName);
+    setFormAddress(address);
+    setFormCity(city);
+    setFormCountry(country);
+    setFormPhone(phone);
+    setFormEmail(email);
+  }, [currentContact]);
 
   const formFields = [
     'First Name',
