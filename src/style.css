@@ -40,11 +40,16 @@ main {
 .slider-list {
   height: 350px;
   width: 350px;
-  z-index: 0;
+  z-index: -1;
 }
 
 .contact-button {
+  display: flex;
+  justify-content: flex-start;
+
   width: 100%;
+
+  padding: 10px;
 }
 
 .slider-details {
@@ -64,6 +69,10 @@ main {
     margin-left: 0%;
     width: 100%;
   }
+}
+
+.contact-details {
+  background-color: var(--background-color);
 }
 
 /* animated spinner source - https://loading.io/css/*/
