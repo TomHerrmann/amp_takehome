@@ -65,12 +65,10 @@ const App = ({
 
   // abstracts logic out of the return statement for cleaner code
   const renderContactInfo = () => {
-    console.log('contacts is --> ', typeof contacts);
-    console.log('isloading --> ', isLoading);
     return isLoading ? (
       <LoadingSpinner />
     ) : (
-      <section className="slider-wrapper">
+      <>
         <section className="slider-list">
           {contacts.map((contact, index) => (
             <ContactButton
@@ -84,8 +82,12 @@ const App = ({
           <section className="slider-details">
             <ContactDetails />
           </section>
-        ) : null}
-      </section>
+        ) : (
+          <section className="slider-details">
+            <h1>ANIMATOIN!</h1>
+          </section>
+        )}
+      </>
     );
   };
 
@@ -116,7 +118,7 @@ const App = ({
   return (
     <main className="app">
       <header className="title-container">{renderHeader()}</header>
-      <section className="contact-info">{renderContactInfo()}</section>
+      <section className="contacts-wrapper">{renderContactInfo()}</section>
     </main>
   );
 };

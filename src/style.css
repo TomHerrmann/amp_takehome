@@ -15,7 +15,7 @@ body {
   flex-direction: column;
   align-items: center;
 
-  width: 60%;
+  width: 350px;
 
   margin: auto;
 }
@@ -24,16 +24,46 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  width: 100%;
 }
 
 main {
+  height: 100%;
   width: 100%;
 }
 
-main button {
+.contacts-wrapper {
+  height: 350px;
+  width: 350px;
+  overflow: hidden auto;
+}
+
+.slider-list {
+  height: 350px;
+  width: 350px;
+  z-index: 0;
+}
+
+.contact-button {
   width: 100%;
+}
+
+.slider-details {
+  height: 350px;
+  width: 350px;
+  z-index: 1;
+  animation: slider 3s ease-in;
+}
+
+@keyframes slider {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
 
 /* animated spinner source - https://loading.io/css/*/
