@@ -51,7 +51,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         contactIndex: null,
-        currentContact: null,
         detailsView: false,
       };
     }
@@ -63,7 +62,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         contactIndex: null,
-        currentContact: null,
         contacts,
         detailsView: false,
       };

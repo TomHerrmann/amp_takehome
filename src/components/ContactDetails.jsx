@@ -5,7 +5,7 @@ import { contactUpdateCancel, contactUpdateSave } from '../actions/actions';
 const ContactDetails = () => {
   const dispatch = useDispatch();
   const store = useStore();
-  const { contactIndex, currentContact } = store.getState();
+  const { currentContact } = store.getState();
   const {
     firstName,
     lastName,

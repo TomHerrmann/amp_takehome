@@ -69,33 +69,24 @@ const App = ({
     console.log('isloading --> ', isLoading);
     return isLoading ? (
       <LoadingSpinner />
-    ) : detailsView ? (
-      <ContactDetails />
     ) : (
-      contacts.map((contact, index) => (
-        <ContactButton
-          contact={contact}
-          index={index}
-          key={`contact${index}`}
-        />
-      ))
+      <section className="slider-wrapper">
+        <section className="slider-list">
+          {contacts.map((contact, index) => (
+            <ContactButton
+              contact={contact}
+              index={index}
+              key={`contact${index}`}
+            />
+          ))}
+        </section>
+        {currentContact ? (
+          <section className="slider-details">
+            <ContactDetails />
+          </section>
+        ) : null}
+      </section>
     );
-    // ) : (
-    //   <section className="slider-wrapper">
-    //     <section className="slider-list">
-    //       {contacts.map((contact, index) => (
-    //         <ContactButton
-    //           contact={contact}
-    //           index={index}
-    //           key={`contact${index}`}
-    //         />
-    //       ))}
-    //     </section>
-    //     <section className="slider-details">
-    //       <ContactDetails />
-    //     </section>
-    //   </section>
-    // );
   };
 
   // effectively a componentDidMount
@@ -115,7 +106,11 @@ const App = ({
 
   // a hook that listens for updates to the contacts property in state
   useEffect(() => {
-    window.localStorage.setItem('contacts', JSON.stringify(contacts));
+    if (typeof contacts === 'string') {
+      window.localStorage.setItem('contacts', contacts);
+    } else {
+      window.localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
   }, [contacts]);
 
   return (
