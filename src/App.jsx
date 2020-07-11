@@ -18,42 +18,6 @@ const App = ({
   detailsView,
   isLoading,
 }) => {
-  // abstracts logic out of the return statement for cleaner code
-  const renderHeader = () => {
-    return detailsView ? (
-      <>
-        <section className="header-title">
-          <button onClick={contactUpdateCancel}>{'< Back'}</button>
-          <h1>Contacts</h1>
-        </section>
-        <section className="header-name">
-          <h2>{`${currentContact.firstName} ${currentContact.lastName}`}</h2>
-        </section>
-      </>
-    ) : (
-      <section className="header-title">
-        <h1>Contacts</h1>
-      </section>
-    );
-  };
-
-  // abstracts logic out of the return statement for cleaner code
-  const renderContactInfo = () => {
-    return isLoading ? (
-      <LoadingSpinner />
-    ) : detailsView ? (
-      <ContactDetails />
-    ) : (
-      contacts.map((contact, index) => (
-        <ContactButton
-          contact={contact}
-          index={index}
-          key={`contact${index}`}
-        />
-      ))
-    );
-  };
-
   // logic for the initial data fetch
   const fetchAllContacts = async () => {
     const contactsPromise = await fetch(contactAPI, {
@@ -78,6 +42,60 @@ const App = ({
     } else {
       apiError(contactsPromise.status);
     }
+  };
+
+  // abstracts logic out of the return statement for cleaner code
+  const renderHeader = () => {
+    return detailsView ? (
+      <>
+        <section className="header-title">
+          <button onClick={contactUpdateCancel}>{'< Back'}</button>
+          <h1>Contacts</h1>
+        </section>
+        <section className="header-name">
+          <h2>{`${currentContact.firstName} ${currentContact.lastName}`}</h2>
+        </section>
+      </>
+    ) : (
+      <section className="header-title">
+        <h1>Contacts</h1>
+      </section>
+    );
+  };
+
+  // abstracts logic out of the return statement for cleaner code
+  const renderContactInfo = () => {
+    console.log('contacts is --> ', typeof contacts);
+    console.log('isloading --> ', isLoading);
+    return isLoading ? (
+      <LoadingSpinner />
+    ) : detailsView ? (
+      <ContactDetails />
+    ) : (
+      contacts.map((contact, index) => (
+        <ContactButton
+          contact={contact}
+          index={index}
+          key={`contact${index}`}
+        />
+      ))
+    );
+    // ) : (
+    //   <section className="slider-wrapper">
+    //     <section className="slider-list">
+    //       {contacts.map((contact, index) => (
+    //         <ContactButton
+    //           contact={contact}
+    //           index={index}
+    //           key={`contact${index}`}
+    //         />
+    //       ))}
+    //     </section>
+    //     <section className="slider-details">
+    //       <ContactDetails />
+    //     </section>
+    //   </section>
+    // );
   };
 
   // effectively a componentDidMount
