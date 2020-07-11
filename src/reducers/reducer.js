@@ -4,7 +4,6 @@ import {
   CONTACT_SELECT,
   CONTACT_UPDATE_CANCEL,
   CONTACT_UPDATE_SAVE,
-  LOADING_UPDATE,
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -13,7 +12,7 @@ const initialState = {
   currentContact: null,
   detailsView: false,
   errorStatus: null,
-  isLoading: false,
+  isLoading: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,9 +26,8 @@ const reducer = (state = initialState, action) => {
       };
     }
     case CONTACTS_POPULATE: {
-      const contacts = action.payload;
+      const contacts = JSON.parse(action.payload);
 
-      window.localStorage.setItem('contacts', contacts);
       return {
         ...state,
         contacts,
@@ -66,14 +64,6 @@ const reducer = (state = initialState, action) => {
         currentContact: null,
         contacts,
         detailsView: false,
-      };
-    }
-    case LOADING_UPDATE: {
-      const isLoading = action.payload;
-
-      return {
-        ...state,
-        isLoading,
       };
     }
     default:

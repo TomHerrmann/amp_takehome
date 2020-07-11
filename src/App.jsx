@@ -13,10 +13,10 @@ import { defaultFieldResolver } from 'graphql';
 const App = ({
   apiError,
   contacts,
+  contactsPopulate,
   currentContact,
   detailsView,
   isLoading,
-  loadingUpdate,
 }) => {
   const fetchAllContacts = async () => {
     const contactsPromise = await fetch(contactAPI, {
@@ -37,8 +37,7 @@ const App = ({
 
       window.localStorage.setItem('contacts', JSON.stringify(sortedContacts));
       setTimeout(() => {
-        console.log('loadingUpdate');
-        loadingUpdate(false);
+        contactsPopulate(window.localStorage.getItem('contacts'));
       }, 250);
     } else {
       apiError(contactsPromise.status);
@@ -46,13 +45,17 @@ const App = ({
   };
 
   useEffect(() => {
-    // if (!contacts) {
-    try {
-      fetchAllContacts();
-    } catch (err) {
-      console.log(`Fetch failed with ${err}`);
+    if (!contacts) {
+      try {
+        fetchAllContacts();
+      } catch (err) {
+        console.log(`Fetch failed with ${err}`);
+      }
+    } else {
+      setTimeout(() => {
+        contactsPopulate(contacts);
+      }, 250);
     }
-    // }
   }, []);
 
   return (
@@ -63,7 +66,7 @@ const App = ({
           <h2>{`${currentContact.firstName} ${currentContact.lastName}`}</h2>
         ) : null}
       </header>
-      {/* <section className="contact-info">
+      <section className="contact-info">
         {isLoading ? (
           <LoadingSpinner />
         ) : detailsView ? (
@@ -77,7 +80,7 @@ const App = ({
             />
           ))
         )}
-      </section> */}
+      </section>
     </main>
   );
 };
