@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { connect, useStore } from 'react-redux';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from './actions/actions';
 
@@ -18,6 +18,43 @@ const App = ({
   detailsView,
   isLoading,
 }) => {
+  // abstracts logic out of the return statement for cleaner code
+  const renderHeader = () => {
+    return detailsView ? (
+      <>
+        <section className="header-title">
+          <button onClick={contactUpdateCancel}>{'< Back'}</button>
+          <h1>Contacts</h1>
+        </section>
+        <section className="header-name">
+          <h2>{`${currentContact.firstName} ${currentContact.lastName}`}</h2>
+        </section>
+      </>
+    ) : (
+      <section className="header-title">
+        <h1>Contacts</h1>
+      </section>
+    );
+  };
+
+  // abstracts logic out of the return statement for cleaner code
+  const renderContactInfo = () => {
+    return isLoading ? (
+      <LoadingSpinner />
+    ) : detailsView ? (
+      <ContactDetails />
+    ) : (
+      contacts.map((contact, index) => (
+        <ContactButton
+          contact={contact}
+          index={index}
+          key={`contact${index}`}
+        />
+      ))
+    );
+  };
+
+  // logic for the initial data fetch
   const fetchAllContacts = async () => {
     const contactsPromise = await fetch(contactAPI, {
       'x-api-key': contactAPIKey,
@@ -43,40 +80,7 @@ const App = ({
     }
   };
 
-  const renderHeader = () => {
-    return detailsView ? (
-      <>
-        <section className="header-title">
-          <button onClick={contactUpdateCancel}>{'< Back'}</button>
-          <h1>Contacts</h1>
-        </section>
-        <section className="header-name">
-          <h2>{`${currentContact.firstName} ${currentContact.lastName}`}</h2>
-        </section>
-      </>
-    ) : (
-      <section className="header-title">
-        <h1>Contacts</h1>
-      </section>
-    );
-  };
-
-  const renderContactInfo = () => {
-    return isLoading ? (
-      <LoadingSpinner />
-    ) : detailsView ? (
-      <ContactDetails />
-    ) : (
-      contacts.map((contact, index) => (
-        <ContactButton
-          contact={contact}
-          index={index}
-          key={`contact${index}`}
-        />
-      ))
-    );
-  };
-
+  // effectively a componentDidMount
   useEffect(() => {
     if (!contacts) {
       try {
@@ -91,6 +95,7 @@ const App = ({
     }
   }, []);
 
+  // a hook that listens for updates to the contacts property in state
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
