@@ -12,7 +12,7 @@ const ContactButton = ({ contact, index }) => {
         dispatch(contactSelect(contact, index));
       }}
     >
-      {contact.firstName}
+      {`${contact.firstName} ${contact.lastName}`}
     </button>
   );
 };
