@@ -32,15 +32,20 @@ main {
 }
 
 .contacts-wrapper {
+  position: relative;
   height: 350px;
   width: 350px;
-  overflow: hidden auto;
+  overflow: hidden;
 }
 
 .slider-list {
-  height: 350px;
-  width: 350px;
-  z-index: -1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  z-index: 0;
+
+  overflow: auto;
 }
 
 .contact-button {
@@ -53,16 +58,21 @@ main {
 }
 
 .slider-details {
-  height: 350px;
-  width: 350px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
   z-index: 1;
+
+  background-color: purple;
+
   animation: slider 3s ease-in;
 }
 
 @keyframes slider {
   from {
     margin-left: 100%;
-    width: 300%;
+    width: 100%;
   }
 
   to {
@@ -72,10 +82,10 @@ main {
 }
 
 .contact-details {
-  background-color: var(--background-color);
+  background-color: purple;
 }
 
-/* animated spinner source - https://loading.io/css/*/
+/* animated spinner source - https://loading.io/css/ */
 .loading-spinner {
   display: flex;
   justify-content: center;
