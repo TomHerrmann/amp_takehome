@@ -99,7 +99,6 @@ const ContactDetails = () => {
       phone: formPhone,
       email: formEmail,
     };
-    console.log('formFields at dispatched ->', updatedContact);
     dispatch(contactUpdateSave(updatedContact));
   };
 
