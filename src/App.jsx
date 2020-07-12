@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useStore } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from './actions/actions';
 
@@ -9,15 +9,10 @@ import LoadingSpinner from './components/LoadingSpinner.jsx';
 
 import { contactAPI, contactAPIKey } from './utils/enums';
 
-const App = ({
-  apiError,
-  contacts,
-  contactsPopulate,
-  contactUpdateCancel,
-  currentContact,
-  detailsView,
-  isLoading,
-}) => {
+const App = ({ apiError, contactsPopulate, contactUpdateCancel }) => {
+  const store = useStore();
+  const { contacts, currentContact, detailsView, isLoading } = store.getState();
+
   // logic for the initial data fetch
   const fetchAllContacts = async () => {
     const contactsPromise = await fetch(contactAPI, {
