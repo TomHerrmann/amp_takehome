@@ -119,7 +119,6 @@ const ContactDetails = () => {
                 type="text"
                 value={formState[index]}
               />
-              ;
             </label>
           );
         })}
