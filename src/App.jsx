@@ -78,13 +78,9 @@ const App = ({
             />
           ))}
         </section>
-        {currentContact ? (
+        {currentContact && (
           <section className="slider-details">
             <ContactDetails />
-          </section>
-        ) : (
-          <section className="slider-details">
-            <h1>ANIMATOIN!</h1>
           </section>
         )}
       </>
