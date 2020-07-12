@@ -43,12 +43,14 @@ const App = ({ apiError, contactsPopulate, contactUpdateCancel }) => {
   const renderHeader = () => {
     return detailsView ? (
       <>
-        <section className="header-title">
-          <button onClick={contactUpdateCancel}>{'< Back'}</button>
-          <h1>Contacts</h1>
-        </section>
-        <section className="header-name">
-          <h2>{`${currentContact.firstName} ${currentContact.lastName}`}</h2>
+        <button onClick={contactUpdateCancel}>{'< Back'}</button>
+        <section className="header-container">
+          <section className="header-title">
+            <h1>Contacts</h1>
+          </section>
+          <section className="header-contact">
+            <h2>{`${currentContact.firstName} ${currentContact.lastName}`}</h2>
+          </section>
         </section>
       </>
     ) : (

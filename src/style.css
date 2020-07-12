@@ -14,16 +14,60 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  width: 350px;
-
+  width: 400px;
   margin: auto;
+  margin-top: 40px;
+  border: 1px solid black;
 }
 
 header {
   display: flex;
+  justify-content: flex-start;
+  position: relative;
+
+  height: 60px;
+  width: 100%;
+
+  border: 1px solid black;
+}
+
+header button {
+  all: unset;
+  height: fit-content;
+  padding: 15px;
+
+  z-index: 1;
+}
+
+.header-container {
+  display: flex;
   flex-direction: column;
-  align-items: center;
+
+  position: absolute;
+  width: 100%;
+}
+
+.header-title {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.header-title h1 {
+  all: unset;
+  font-size: 21px;
+  padding-top: 10px;
+}
+
+.header-contact {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.header-contact h2 {
+  all: unset;
+  font-size: 13px;
 }
 
 main {
@@ -32,9 +76,11 @@ main {
 }
 
 .contacts-wrapper {
+  display: flex;
+  justify-content: center;
   position: relative;
-  height: 350px;
-  width: 350px;
+  height: 430px;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -64,9 +110,9 @@ main {
 
   z-index: 1;
 
-  background-color: purple;
+  background-color: var(--background-color);
 
-  animation: slider 3s ease-in;
+  animation: slider 0.5s ease-in;
 }
 
 @keyframes slider {
@@ -82,7 +128,7 @@ main {
 }
 
 .contact-details {
-  background-color: purple;
+  margin: 20px;
 }
 
 /* animated spinner source - https://loading.io/css/ */
