@@ -107,8 +107,14 @@ const ContactDetails = () => {
     <section className="contact-details">
       <form>
         {formFields.map((field, index) => {
+          const inputClass =
+            field === 'Address' || field === 'Email'
+              ? 'label-wide'
+              : 'label-narrow';
           return (
-            <label key={`${index}${field}`}>
+            <label key={`${index}${field}`} className={inputClass}>
+              {field}
+              <br />
               <input
                 name={field}
                 onChange={(event) => {
@@ -123,12 +129,14 @@ const ContactDetails = () => {
           );
         })}
       </form>
-      <button className="cancel-button" onClick={onFormCancel}>
-        Cancel
-      </button>
-      <button className="save-button" onClick={onFormSave}>
-        Save
-      </button>
+      <section className="contact-form-buttons">
+        <button className="cancel-button" onClick={onFormCancel}>
+          Cancel
+        </button>
+        <button className="save-button" onClick={onFormSave}>
+          Save
+        </button>
+      </section>
     </section>
   );
 };

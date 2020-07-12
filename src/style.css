@@ -2,6 +2,10 @@
   --background-color: #f5f5f5;
   --color: #3b444b;
   --shadow-color: #414a4c;
+  --cancel-background: #eca1a6;
+  --cancel-border: #e9777e;
+  --save-border: #94ce98;
+  --save-background: #bdcebe;
 }
 
 body {
@@ -34,7 +38,9 @@ header {
 header button {
   all: unset;
   height: fit-content;
-  padding: 15px;
+  margin: 15px;
+
+  cursor: pointer;
 
   z-index: 1;
 }
@@ -79,7 +85,7 @@ main {
   display: flex;
   justify-content: center;
   position: relative;
-  height: 430px;
+  height: 450px;
   width: 100%;
   overflow: hidden;
 }
@@ -129,6 +135,54 @@ main {
 
 .contact-details {
   margin: 20px;
+}
+
+.contact-details form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.contact-details label {
+  padding: 10px;
+}
+
+.label-wide {
+  width: 100%;
+}
+
+.contact-details input {
+  width: 97%;
+  margin-top: 2px;
+  padding: 5px;
+}
+
+.contact-form-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-details button {
+  margin: 28px 15px 0;
+  padding: 7px 0;
+  width: 101px;
+}
+
+.cancel-button {
+  background-color: var(--cancel-background);
+  border: 2px solid var(--cancel-border);
+  border-radius: 7px;
+
+  cursor: pointer;
+}
+
+.save-button {
+  background-color: var(--save-background);
+  border: 2px solid var(--save-border);
+  border-radius: 7px;
+
+  cursor: pointer;
 }
 
 /* animated spinner source - https://loading.io/css/ */
