@@ -73,7 +73,7 @@ const App = ({ apiError, contactsPopulate, contactUpdateCancel }) => {
             />
           ))}
         </section>
-        {currentContact && (
+        {detailsView && (
           <section className="slider-details">
             <ContactDetails />
           </section>
