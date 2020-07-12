@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ContactButton /> should render correctly 1`] = `
+<button
+  className="contact-button"
+  onClick={[Function]}
+>
+  Brandy Bartell
+</button>
+`;

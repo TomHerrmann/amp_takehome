@@ -26,7 +26,7 @@ export const contactUpdateCancel = () => ({
   payload: null,
 });
 
-export const contactUpdateSave = (formFields) => ({
+export const contactUpdateSave = (formState) => ({
   type: CONTACT_UPDATE_SAVE,
-  payload: formFields,
+  payload: formState,
 });
