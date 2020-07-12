@@ -37,7 +37,6 @@ describe('<ContactButton />', () => {
   it('should dispatch the correct action on button click', () => {
     const component = shallow(<ContactButtonm {...defaultProps} />);
     component.props().onClick();
-
     expect(dispatch).toHaveBeenCalledWith(
       contactSelect(defaultProps.contact, defaultProps.index)
     );

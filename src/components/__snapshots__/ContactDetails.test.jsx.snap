@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ContactDetails /> should render correctly 1`] = `
+<ContactDetails>
+  <section
+    className="contact-details"
+  >
+    <form>
+      <label
+        className="label-narrow"
+        key="0First Name"
+      >
+        First Name
+        <br />
+        <input
+          name="First Name"
+          onChange={[Function]}
+          placeholder="Brandy"
+          required={true}
+          type="text"
+          value="Brandy"
+        />
+      </label>
+      <label
+        className="label-narrow"
+        key="1Last Name"
+      >
+        Last Name
+        <br />
+        <input
+          name="Last Name"
+          onChange={[Function]}
+          placeholder="Bartell"
+          required={true}
+          type="text"
+          value="Bartell"
+        />
+      </label>
+      <label
+        className="label-wide"
+        key="2Address"
+      >
+        Address
+        <br />
+        <input
+          name="Address"
+          onChange={[Function]}
+          placeholder="42991 Beahan Parkway"
+          required={true}
+          type="text"
+          value="42991 Beahan Parkway"
+        />
+      </label>
+      <label
+        className="label-narrow"
+        key="3City"
+      >
+        City
+        <br />
+        <input
+          name="City"
+          onChange={[Function]}
+          placeholder="Veumberg"
+          required={true}
+          type="text"
+          value="Veumberg"
+        />
+      </label>
+      <label
+        className="label-narrow"
+        key="4Country"
+      >
+        Country
+        <br />
+        <input
+          name="Country"
+          onChange={[Function]}
+          placeholder="Venezuela"
+          required={true}
+          type="text"
+          value="Venezuela"
+        />
+      </label>
+      <label
+        className="label-narrow"
+        key="5Phone"
+      >
+        Phone
+        <br />
+        <input
+          name="Phone"
+          onChange={[Function]}
+          placeholder="586-723-4824"
+          required={true}
+          type="text"
+          value="586-723-4824"
+        />
+      </label>
+      <label
+        className="label-wide"
+        key="6Email"
+      >
+        Email
+        <br />
+        <input
+          name="Email"
+          onChange={[Function]}
+          placeholder="Marianne56@hotmail.com"
+          required={true}
+          type="text"
+          value="Marianne56@hotmail.com"
+        />
+      </label>
+    </form>
+    <section
+      className="contact-form-buttons"
+    >
+      <button
+        className="cancel-button"
+        onClick={[Function]}
+      >
+        Cancel
+      </button>
+      <button
+        className="save-button"
+        onClick={[Function]}
+      >
+        Save
+      </button>
+    </section>
+  </section>
+</ContactDetails>
+`;
