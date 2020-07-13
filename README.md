@@ -11,7 +11,7 @@
 1.  Create a phone directory web application using ReactJS, HTML, and CSS. The web application should
     have two views:
 
-    1. List View: (see diagram A)
+    1. List View:
 
        - The initial contact list (data) should be retrieved from the API and stored in the
          browser’s local storage; See the API call details below.
@@ -20,7 +20,7 @@
        - When the page is refreshed the list should be taken from the browser’s local storage (if
          data is already stored in the local storage otherwise call the API to get the data)
 
-    2. Detailed View: (see diagram B)
+    2. Detailed View
        - When a contact is selected from the list view, the detailed view should slide in from the
          right
        - Users should be able to edit the contact information and save the changes
