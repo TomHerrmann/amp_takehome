@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppContainer /> should render correctly & dispatch contents populate 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(App)>
+    <App
+      apiError={[Function]}
+      contactIndex={null}
+      contactSelect={[Function]}
+      contactUpdateCancel={[Function]}
+      contactUpdateSave={[Function]}
+      contacts={
+        Array [
+          Object {
+            "address": "42991 Beahan Parkway",
+            "city": "Veumberg",
+            "country": "Venezuela",
+            "email": "Marianne56@hotmail.com",
+            "firstName": "Brandy",
+            "id": "9367",
+            "lastName": "Bartell",
+            "phone": "586-723-4824",
+          },
+          Object {
+            "address": "356 Marlene Fork",
+            "city": "East Preston",
+            "country": "Lebanon",
+            "email": "Mariana.Rohan@hotmail.com",
+            "firstName": "Ines",
+            "id": "92819",
+            "lastName": "Steuber",
+            "phone": "563-954-3264",
+          },
+        ]
+      }
+      contactsPopulate={[Function]}
+      currentContact={null}
+      detailsView={false}
+      errorStatus={null}
+      isLoading={true}
+    >
+      <main
+        className="app"
+      >
+        <header
+          className="title-container"
+        >
+          <section
+            className="header-title"
+          >
+            <h1>
+              Contacts
+            </h1>
+          </section>
+        </header>
+        <section
+          className="contacts-wrapper"
+        >
+          <LoadingSpinner>
+            <div
+              className="loading-spinner"
+            >
+              <div />
+              <div />
+              <div />
+              <div />
+            </div>
+          </LoadingSpinner>
+        </section>
+      </main>
+    </App>
+  </Connect(App)>
+</Provider>
+`;
