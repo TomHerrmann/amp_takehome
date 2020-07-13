@@ -79,7 +79,6 @@ describe('reducer', () => {
       type: CONTACT_UPDATE_SAVE,
       payload: formState,
     };
-    console.log('store', store);
     const newContacts = defaultStore.contacts.slice();
     defaultStore.contactIndex = 1;
     newContacts[1] = formState;
