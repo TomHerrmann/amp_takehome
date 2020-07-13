@@ -25,8 +25,8 @@
 
 Get initial contact list API:
 Endpoint: https://v3c3w2t164.execute-api.us-east-2.amazonaws.com/v1
-Required Header:
-x-api-key: GkwUbWhmDS5teATL3l6724mI4JUMT3OWa5PnmJVf
+
+- Required Header: x-api-key: GkwUbWhmDS5teATL3l6724mI4JUMT3OWa5PnmJVf
 
 2. Write unit tests where appropriate.
    Note
