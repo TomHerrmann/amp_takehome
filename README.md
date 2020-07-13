@@ -51,3 +51,99 @@
 This Contact List application incorporates ReactJS, HTML, and CSS as required, along with Nodejs with Express on the backend, near complete unit testing with Jest and Enzyme, and Redux state management. Though the Redux store acts as the single source of truth for the majority of the application, local state is leveraged to maintain a controlled form component without prop-drilling.
 
 The app does include a dispatch action apiError, which isn't used to its potential. The action is called upon a fetch error and upstates the state errorStatus property with the API error code. This data could be used to relay more detailed information to users via a modal when errorStatus is not null if this app were put into production.
+
+## Usage
+
+1. Clone this repository
+
+2. Run the following terminal command in the project's root directory
+
+NPM:
+
+```
+npm i
+```
+
+Yarn:
+
+```
+yarn
+```
+
+3. Run the following to build your bundle file
+
+NPM:
+
+```
+npm run build
+```
+
+Yarn:
+
+```
+yarn run build
+```
+
+4. Run the following to start your server
+
+NPM:
+
+```
+npm start
+```
+
+Yarn:
+
+```
+yarn start
+```
+
+5. Proceed to [localhost:3000](http://localhost:3000/)
+
+## Testing
+
+1. Run the following command in the root directory
+
+NPM:
+
+```
+npm run test
+```
+
+Yarn:
+
+```
+yarn run test
+```
+
+## Contribute
+
+1. Clone this repository
+
+2. Run the following terminal command in the project's root directory
+
+NPM:
+
+```
+npm i
+```
+
+Yarn:
+
+```
+yarn
+```
+
+3. Run the following to start your dev server
+
+NPM:
+
+```
+npm run dev
+```
+
+Yarn:
+
+```
+yarn run dev
+```
